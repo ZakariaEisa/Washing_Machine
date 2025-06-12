@@ -1,0 +1,575 @@
+Coverage Report by instance with details
+
+=================================================================================
+=== Instance: /tb_wm/Dut/fsm_1
+=== Design Unit: work.WashingMachineFSM
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        30        30         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /tb_wm/Dut/fsm_1
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File WMCONTROLLERLST.v
+------------------------------------IF Branch------------------------------------
+    16                                        23     Count coming in to IF
+    16              1                          2     
+    18              1                         21     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    23                                       149     Count coming in to CASE
+    24              1                          4     
+    30              1                         29     
+    36              1                         32     
+    42              1                         32     
+    48              1                         34     
+    54              1                         16     
+    60              1                          1     
+    63              1                          1     
+Branch totals: 8 hits of 8 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    25                                         4     Count coming in to IF
+    25              1                          2     
+    27              1                          2     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    31                                        29     Count coming in to IF
+    31              1                          2     
+    33              1                         27     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    37                                        32     Count coming in to IF
+    37              1                          2     
+    39              1                         30     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    43                                        32     Count coming in to IF
+    43              1                          2     
+    45              1                         30     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    49                                        34     Count coming in to IF
+    49              1                          1     
+    51              1                         33     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    55                                        16     Count coming in to IF
+    55              1                          1     
+    57              1                         15     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------CASE Branch------------------------------------
+    68                                       149     Count coming in to CASE
+    69              1                          4     
+    70              1                         29     
+    71              1                         32     
+    72              1                         32     
+    73              1                         34     
+    74              1                         16     
+    75              1                          1     
+                                               1     All False Count
+Branch totals: 8 hits of 8 branches = 100.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       5         5         0   100.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /tb_wm/Dut/fsm_1 --
+
+  File WMCONTROLLERLST.v
+----------------Focused Condition View-------------------
+Line       31 Item    1  (timer == 15)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       37 Item    1  (timer == 15)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       43 Item    1  (timer == 15)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       49 Item    1  (timer == 15)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+----------------Focused Condition View-------------------
+Line       55 Item    1  (timer == 15)
+Condition totals: 1 of 1 input term covered = 100.00%
+
+
+FSM Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    FSM States                       7         7         0   100.00%
+    FSM Transitions                 12         7         5    58.33%
+
+================================FSM Details================================
+
+FSM Coverage for instance /tb_wm/Dut/fsm_1 --
+
+FSM_ID: state
+    Current State Object : state
+    ----------------------
+    State Value MapInfo :
+    ---------------------
+Line          State Name               Value
+----          ----------               -----
+  24                 Off                   0
+  30           FillWater                   1
+  36                Wash                   2
+  42               Drain                   3
+  48               Rinse                   4
+  54                Spin                   5
+  60                Done                   6
+    Covered States :
+    ----------------
+                   State           Hit_count
+                   -----           ---------
+                     Off                   4          
+               FillWater                   4          
+                    Wash                   4          
+                   Drain                   4          
+                   Rinse                   4          
+                    Spin                   2          
+                    Done                   1          
+    Covered Transitions :
+    ---------------------
+Line            Trans_ID           Hit_count          Transition          
+----            --------           ---------          ----------          
+  26                   0                   2          Off -> FillWater              
+  32                   1                   2          FillWater -> Wash             
+  38                   3                   2          Wash -> Drain                 
+  44                   5                   2          Drain -> Rinse                
+  50                   7                   1          Rinse -> Spin                 
+  56                   9                   1          Spin -> Done                  
+  61                  11                   1          Done -> Off                   
+    Uncovered Transitions :
+    -----------------------
+Line            Trans_ID          Transition          
+----            --------          ----------          
+  17                   2          FillWater -> Off    
+  17                   4          Wash -> Off         
+  17                   6          Drain -> Off        
+  17                   8          Rinse -> Off        
+  17                  10          Spin -> Off         
+
+
+    Summary                       Bins      Hits    Misses  Coverage
+    -------                       ----      ----    ------  --------
+        FSM States                   7         7         0   100.00%
+        FSM Transitions             12         7         5    58.33%
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         28        27         1    96.42%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /tb_wm/Dut/fsm_1 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                             reset           1           0       50.00 
+
+Total Node Count     =         14 
+Toggled Node Count   =         13 
+Untoggled Node Count =          1 
+
+Toggle Coverage      =      96.42% (27 of 28 bins)
+
+=================================================================================
+=== Instance: /tb_wm/Dut/T_1
+=== Design Unit: work.timer
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         3         3         0   100.00%
+
+================================Branch Details================================
+
+Branch Coverage for instance /tb_wm/Dut/T_1
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File WMCONTROLLERLST.v
+------------------------------------IF Branch------------------------------------
+    88                                       173     Count coming in to IF
+    88              1                          1     
+    90              1                        133     
+    92              1                         39     
+Branch totals: 3 hits of 3 branches = 100.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                       2         2         0   100.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /tb_wm/Dut/T_1 --
+
+  File WMCONTROLLERLST.v
+----------------Focused Condition View-------------------
+Line       90 Item    1  (enable && (counter != 15))
+Condition totals: 2 of 2 input terms covered = 100.00%
+
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         14        13         1    92.85%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /tb_wm/Dut/T_1 --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                             reset           1           0       50.00 
+
+Total Node Count     =          7 
+Toggled Node Count   =          6 
+Untoggled Node Count =          1 
+
+Toggle Coverage      =      92.85% (13 of 14 bins)
+
+=================================================================================
+=== Instance: /tb_wm/Dut
+=== Design Unit: work.top
+=================================================================================
+Expression Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Expressions                      2         2         0   100.00%
+
+================================Expression Details================================
+
+Expression Coverage for instance /tb_wm/Dut --
+
+  File WMCONTROLLERLST.v
+----------------Focused Expression View-----------------
+Line       119 Item    1  (start_button & ~pause_button)
+Expression totals: 2 of 2 input terms covered = 100.00%
+
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         18        17         1    94.44%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /tb_wm/Dut --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                             reset           1           0       50.00 
+
+Total Node Count     =          9 
+Toggled Node Count   =          8 
+Untoggled Node Count =          1 
+
+Toggle Coverage      =      94.44% (17 of 18 bins)
+
+=================================================================================
+=== Instance: /tb_wm
+=== Design Unit: work.tb_wm
+=================================================================================
+Branch Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        33        22        11    66.66%
+
+================================Branch Details================================
+
+Branch Coverage for instance /tb_wm
+
+    Line         Item                      Count     Source 
+    ----         ----                      -----     ------ 
+  File TBWMLST.v
+------------------------------------IF Branch------------------------------------
+    50                                        22     Count coming in to IF
+    50              1                          1     
+    55              1                         21     
+Branch totals: 2 hits of 2 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    52                                         1     Count coming in to IF
+    52              1                    ***0***     
+                                               1     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------CASE Branch------------------------------------
+    57                                        21     Count coming in to CASE
+    58              1                          3     
+    63              1                          4     
+    68              1                          4     
+    73              1                          4     
+    78              1                          3     
+    83              1                          2     
+    88              1                          1     
+    93              1                    ***0***     
+Branch totals: 7 hits of 8 branches = 87.50%
+
+------------------------------------IF Branch------------------------------------
+    59                                         3     Count coming in to IF
+    59              1                    ***0***     
+                                               3     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    64                                         4     Count coming in to IF
+    64              1                    ***0***     
+                                               4     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    69                                         4     Count coming in to IF
+    69              1                    ***0***     
+                                               4     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    74                                         4     Count coming in to IF
+    74              1                    ***0***     
+                                               4     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    79                                         3     Count coming in to IF
+    79              1                    ***0***     
+                                               3     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    84                                         2     Count coming in to IF
+    84              1                    ***0***     
+                                               2     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    89                                         1     Count coming in to IF
+    89              1                    ***0***     
+                                               1     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    102                                      148     Count coming in to IF
+    102             1                          1     
+    106             1                        141     
+                                               6     All False Count
+Branch totals: 3 hits of 3 branches = 100.00%
+
+------------------------------------IF Branch------------------------------------
+    103                                        1     Count coming in to IF
+    103             1                    ***0***     
+                                               1     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+------------------------------------IF Branch------------------------------------
+    107                                      141     Count coming in to IF
+    107             1                    ***0***     
+                                             141     All False Count
+Branch totals: 1 hit of 2 branches = 50.00%
+
+
+Condition Coverage:
+    Enabled Coverage              Bins   Covered    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Conditions                      16         0        16     0.00%
+
+================================Condition Details================================
+
+Condition Coverage for instance /tb_wm --
+
+  File TBWMLST.v
+----------------Focused Condition View-------------------
+Line       52 Item    1  (Dut.fsm_1.state != 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+              Input Term   Covered  Reason for no coverage   Hint
+             -----------  --------  -----------------------  --------------
+  (Dut.fsm_1.state != 0)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                Non-masking condition(s)      
+ ---------  ---------  --------------------      -------------------------     
+  Row   1:          1  (Dut.fsm_1.state != 0)_0  -                             
+  Row   2:    ***0***  (Dut.fsm_1.state != 0)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       59 Item    1  ((Dut.fsm_1.next_state != 1) && (Dut.fsm_1.next_state != 0))
+Condition totals: 0 of 2 input terms covered = 0.00%
+
+                   Input Term   Covered  Reason for no coverage   Hint
+                  -----------  --------  -----------------------  --------------
+  (Dut.fsm_1.next_state != 1)         N  '_1' not hit             Hit '_1'
+  (Dut.fsm_1.next_state != 0)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                     Non-masking condition(s)      
+ ---------  ---------  --------------------           -------------------------     
+  Row   1:          1  (Dut.fsm_1.next_state != 1)_0  -                             
+  Row   2:    ***0***  (Dut.fsm_1.next_state != 1)_1  (Dut.fsm_1.next_state != 0)   
+  Row   3:          1  (Dut.fsm_1.next_state != 0)_0  (Dut.fsm_1.next_state != 1)   
+  Row   4:    ***0***  (Dut.fsm_1.next_state != 0)_1  (Dut.fsm_1.next_state != 1)   
+
+----------------Focused Condition View-------------------
+Line       64 Item    1  ((Dut.fsm_1.next_state != 2) && (Dut.fsm_1.next_state != 1))
+Condition totals: 0 of 2 input terms covered = 0.00%
+
+                   Input Term   Covered  Reason for no coverage   Hint
+                  -----------  --------  -----------------------  --------------
+  (Dut.fsm_1.next_state != 2)         N  '_1' not hit             Hit '_1'
+  (Dut.fsm_1.next_state != 1)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                     Non-masking condition(s)      
+ ---------  ---------  --------------------           -------------------------     
+  Row   1:          1  (Dut.fsm_1.next_state != 2)_0  -                             
+  Row   2:    ***0***  (Dut.fsm_1.next_state != 2)_1  (Dut.fsm_1.next_state != 1)   
+  Row   3:          1  (Dut.fsm_1.next_state != 1)_0  (Dut.fsm_1.next_state != 2)   
+  Row   4:    ***0***  (Dut.fsm_1.next_state != 1)_1  (Dut.fsm_1.next_state != 2)   
+
+----------------Focused Condition View-------------------
+Line       69 Item    1  ((Dut.fsm_1.next_state != 3) && (Dut.fsm_1.next_state != 2))
+Condition totals: 0 of 2 input terms covered = 0.00%
+
+                   Input Term   Covered  Reason for no coverage   Hint
+                  -----------  --------  -----------------------  --------------
+  (Dut.fsm_1.next_state != 3)         N  '_1' not hit             Hit '_1'
+  (Dut.fsm_1.next_state != 2)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                     Non-masking condition(s)      
+ ---------  ---------  --------------------           -------------------------     
+  Row   1:          1  (Dut.fsm_1.next_state != 3)_0  -                             
+  Row   2:    ***0***  (Dut.fsm_1.next_state != 3)_1  (Dut.fsm_1.next_state != 2)   
+  Row   3:          1  (Dut.fsm_1.next_state != 2)_0  (Dut.fsm_1.next_state != 3)   
+  Row   4:    ***0***  (Dut.fsm_1.next_state != 2)_1  (Dut.fsm_1.next_state != 3)   
+
+----------------Focused Condition View-------------------
+Line       74 Item    1  ((Dut.fsm_1.next_state != 4) && (Dut.fsm_1.next_state != 3))
+Condition totals: 0 of 2 input terms covered = 0.00%
+
+                   Input Term   Covered  Reason for no coverage   Hint
+                  -----------  --------  -----------------------  --------------
+  (Dut.fsm_1.next_state != 4)         N  '_1' not hit             Hit '_1'
+  (Dut.fsm_1.next_state != 3)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                     Non-masking condition(s)      
+ ---------  ---------  --------------------           -------------------------     
+  Row   1:          1  (Dut.fsm_1.next_state != 4)_0  -                             
+  Row   2:    ***0***  (Dut.fsm_1.next_state != 4)_1  (Dut.fsm_1.next_state != 3)   
+  Row   3:          1  (Dut.fsm_1.next_state != 3)_0  (Dut.fsm_1.next_state != 4)   
+  Row   4:    ***0***  (Dut.fsm_1.next_state != 3)_1  (Dut.fsm_1.next_state != 4)   
+
+----------------Focused Condition View-------------------
+Line       79 Item    1  ((Dut.fsm_1.next_state != 5) && (Dut.fsm_1.next_state != 4))
+Condition totals: 0 of 2 input terms covered = 0.00%
+
+                   Input Term   Covered  Reason for no coverage   Hint
+                  -----------  --------  -----------------------  --------------
+  (Dut.fsm_1.next_state != 5)         N  '_1' not hit             Hit '_1'
+  (Dut.fsm_1.next_state != 4)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                     Non-masking condition(s)      
+ ---------  ---------  --------------------           -------------------------     
+  Row   1:          1  (Dut.fsm_1.next_state != 5)_0  -                             
+  Row   2:    ***0***  (Dut.fsm_1.next_state != 5)_1  (Dut.fsm_1.next_state != 4)   
+  Row   3:          1  (Dut.fsm_1.next_state != 4)_0  (Dut.fsm_1.next_state != 5)   
+  Row   4:    ***0***  (Dut.fsm_1.next_state != 4)_1  (Dut.fsm_1.next_state != 5)   
+
+----------------Focused Condition View-------------------
+Line       84 Item    1  ((Dut.fsm_1.next_state != 6) && (Dut.fsm_1.next_state != 5))
+Condition totals: 0 of 2 input terms covered = 0.00%
+
+                   Input Term   Covered  Reason for no coverage   Hint
+                  -----------  --------  -----------------------  --------------
+  (Dut.fsm_1.next_state != 6)         N  '_1' not hit             Hit '_1'
+  (Dut.fsm_1.next_state != 5)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                     Non-masking condition(s)      
+ ---------  ---------  --------------------           -------------------------     
+  Row   1:          1  (Dut.fsm_1.next_state != 6)_0  -                             
+  Row   2:    ***0***  (Dut.fsm_1.next_state != 6)_1  (Dut.fsm_1.next_state != 5)   
+  Row   3:          1  (Dut.fsm_1.next_state != 5)_0  (Dut.fsm_1.next_state != 6)   
+  Row   4:    ***0***  (Dut.fsm_1.next_state != 5)_1  (Dut.fsm_1.next_state != 6)   
+
+----------------Focused Condition View-------------------
+Line       89 Item    1  (Dut.fsm_1.next_state != 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+                   Input Term   Covered  Reason for no coverage   Hint
+                  -----------  --------  -----------------------  --------------
+  (Dut.fsm_1.next_state != 0)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                     Non-masking condition(s)      
+ ---------  ---------  --------------------           -------------------------     
+  Row   1:          1  (Dut.fsm_1.next_state != 0)_0  -                             
+  Row   2:    ***0***  (Dut.fsm_1.next_state != 0)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       103 Item    1  (Dut.T_1.counter != 0)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+              Input Term   Covered  Reason for no coverage   Hint
+             -----------  --------  -----------------------  --------------
+  (Dut.T_1.counter != 0)         N  No hits                  Hit '_0' and '_1'
+
+     Rows:       Hits  FEC Target                Non-masking condition(s)      
+ ---------  ---------  --------------------      -------------------------     
+  Row   1:    ***0***  (Dut.T_1.counter != 0)_0  -                             
+  Row   2:    ***0***  (Dut.T_1.counter != 0)_1  -                             
+
+----------------Focused Condition View-------------------
+Line       107 Item    1  (Dut.T_1.counter > 15)
+Condition totals: 0 of 1 input term covered = 0.00%
+
+              Input Term   Covered  Reason for no coverage   Hint
+             -----------  --------  -----------------------  --------------
+  (Dut.T_1.counter > 15)         N  '_1' not hit             Hit '_1'
+
+     Rows:       Hits  FEC Target                Non-masking condition(s)      
+ ---------  ---------  --------------------      -------------------------     
+  Row   1:          1  (Dut.T_1.counter > 15)_0  -                             
+  Row   2:    ***0***  (Dut.T_1.counter > 15)_1  -                             
+
+
+Toggle Coverage:
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Toggles                         10         9         1    90.00%
+
+================================Toggle Details================================
+
+Toggle Coverage for instance /tb_wm --
+
+                                              Node      1H->0L      0L->1H  "Coverage"
+                                              ---------------------------------------
+                                          reset_tb           1           0       50.00 
+
+Total Node Count     =          5 
+Toggled Node Count   =          4 
+Untoggled Node Count =          1 
+
+Toggle Coverage      =      90.00% (9 of 10 bins)
+
+
+Total Coverage By Instance (filtered view): 78.01%
+
