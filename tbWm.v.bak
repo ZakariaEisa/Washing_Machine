@@ -1,0 +1,188 @@
+`timescale 1ns / 1ps
+
+module tb_WashingMachineFSM;
+
+    // Parameters
+    reg clk;
+    reg reset;
+    reg start;
+    reg [1:0] cycle_select;       // 00: Quick Wash, 01: Normal, 10: Heavy, 11: Delicate
+    reg [1:0] water_level_select; // 00: Low, 01: Medium, 10: High
+    reg [1:0] temp_select;        // 00: Cold, 01: Warm, 10: Hot
+    reg lid_closed;
+    reg water_full;
+    reg load_balanced;
+
+    // Outputs
+    wire motor_on;
+    wire water_pump_on;
+    wire alarm;
+    wire door_locked;
+    wire cycle_led;   // LED to indicate cycle status
+    wire [7:0] timer_output;
+    wire end_of_cycle_alarm;
+
+    // Instantiate the WashingMachineFSM
+    WashingMachineFSM uut (
+        .clk(clk),
+        .reset(reset),
+        .start(start),
+        .cycle_select(cycle_select),
+        .water_level_select(water_level_select),
+        .temp_select(temp_select),
+        .lid_closed(lid_closed),
+        .water_full(water_full),
+        .load_balanced(load_balanced),
+        .motor_on(motor_on),
+        .water_pump_on(water_pump_on),
+        .alarm(alarm),
+        .door_locked(door_locked),
+        .cycle_led(cycle_led),
+        .timer_output(timer_output),
+        .end_of_cycle_alarm(end_of_cycle_alarm)
+    );
+
+    // Clock generation
+    initial begin
+        clk = 0;
+        forever #5 clk = ~clk; // Clock period of 10ns
+    end
+
+    // Randomized Test sequence
+    initial begin
+        // Initialize Inputs
+        reset = 1;
+        start = 0;
+        cycle_select = 2'b01; // Default: Normal Wash
+        water_level_select = 2'b01; // Medium
+        temp_select = 2'b01; // Warm
+        lid_closed = 0;
+        water_full = 0;
+        load_balanced = 0;
+
+        // Apply Reset
+        #10 reset = 0;
+
+        // Simulate power on with random delay
+        #($random % 50); // Random delay between 0 and 50 ns
+        power_on_sequence();
+
+        // Randomized start sequence
+        #($random % 100); // Random delay before pressing start
+        start_button_sequence();
+
+        // Simulate lid closed and balanced load after random delay
+        #($random % 30); // Random delay
+        lid_closed = 1;
+        load_balanced = 1;
+
+        // Simulate water filling with random delay
+        water_fill_sequence();
+
+        // Wait for washing, rinsing, spinning phases with random delays
+        random_phase_delay();
+
+        // Change to different cycle randomly
+        cycle_select = $random % 4; // Random cycle type
+        #10 water_full = 1; // Full water for washing
+        
+        // Simulate end of cycle and check alarm
+        #100;
+        check_end_of_cycle_alarm();
+
+        // Finish the simulation
+        $finish;
+    end
+
+    // Power on sequence
+    task power_on_sequence;
+        begin
+            start = 1;
+            #10 start = 0;
+        end
+    endtask
+
+    // Start button sequence with random delay
+    task start_button_sequence;
+        begin
+            #($random % 100); // Random delay before pressing start
+            start = 1;
+            #10 start = 0;
+        end
+    endtask
+
+    // Water fill sequence with random delays
+    task water_fill_sequence;
+        begin
+            #($random % 50); // Random delay
+            water_full = 1;
+            #($random % 30); // Random time to fill
+            water_full = 0;
+        end
+    endtask
+
+    // Random phase delay (simulates washing, rinsing, spinning with random delays)
+    task random_phase_delay;
+        begin
+            #($random % 50 + 20); // Random delay between 20ns to 70ns for washing, rinsing, etc.
+        end
+    endtask
+
+    // End-of-cycle alarm check
+    task check_end_of_cycle_alarm;
+        begin
+            if (end_of_cycle_alarm !== 1) begin
+                $display("Test failed: End of cycle alarm not activated.");
+            end else begin
+                $display("Test passed: End of cycle alarm activated.");
+            end
+        end
+    endtask
+
+    // Assertions for verification with randomization
+    initial begin
+        // Wait for the first clock edge
+        @(posedge clk);
+        forever begin
+            // Assert that the motor is ON during the washing phase
+            if (uut.state == uut.Wash) begin
+                if (motor_on !== 1) begin
+                    $fatal("Error: Motor should be ON during washing.");
+                end
+            end
+
+            // Assert that water pump is ON during filling phase
+            if (uut.state == uut.FillWater) begin
+                if (water_pump_on !== 1) begin
+                    $fatal("Error: Water pump should be ON during filling.");
+                end
+            end
+
+            // Assert door is locked during washing
+            if (uut.state == uut.Wash) begin
+                if (door_locked !== 1) begin
+                    $fatal("Error: Door should be locked during washing.");
+                end
+            end
+
+            // Assert alarm when lid is open or load is unbalanced
+            if (!lid_closed || !load_balanced) begin
+                if (alarm !== 1) begin
+                    $fatal("Error: Alarm should be ON when lid is open or load is unbalanced.");
+                end
+            end
+
+            // Assert that end-of-cycle alarm is triggered at the end of the cycle
+            if (uut.state == uut.Done) begin
+                if (end_of_cycle_alarm !== 1) begin
+                    $fatal("Error: End of cycle alarm should be activated.");
+                end
+            end
+
+            // Wait for the next clock cycle
+            @(posedge clk);
+        end
+    end
+
+endmodule
+

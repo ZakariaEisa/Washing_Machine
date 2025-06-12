@@ -1,0 +1,36 @@
+Coverage Report Summary Data by instance
+
+=================================================================================
+=== Instance: /tb_wm/Dut/fsm_1
+=== Design Unit: work.WashingMachineFSM
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                        30         0        30     0.00%
+    Conditions                       5         0         5     0.00%
+    Statements                      25         0        25     0.00%
+    Toggles                         14         0        14     0.00%
+
+=================================================================================
+=== Instance: /tb_wm/Dut/T_1
+=== Design Unit: work.timer
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Branches                         3         0         3     0.00%
+    Conditions                       2         0         2     0.00%
+    Statements                       4         0         4     0.00%
+    Toggles                          8         0         8     0.00%
+
+=================================================================================
+=== Instance: /tb_wm/Dut
+=== Design Unit: work.top
+=================================================================================
+    Enabled Coverage              Bins      Hits    Misses  Coverage
+    ----------------              ----      ----    ------  --------
+    Expressions                      2         0         2     0.00%
+    Toggles                         18         0        18     0.00%
+
+
+Total Coverage By Instance (filtered view): 0.00%
+

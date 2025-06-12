@@ -1,0 +1,17 @@
+D:/WMEDA/TESTBWM.v {1 {vlog -work work -vopt -stats=none D:/WMEDA/TESTBWM.v
+QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+-- Compiling module tb_wm
+
+Top level modules:
+	tb_wm
+
+} {} {}} D:/WMEDA/ControllerWM.v {1 {vlog -work work -vopt -cover sbcet3 -stats=none D:/WMEDA/ControllerWM.v
+QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+-- Compiling module WashingMachineFSM
+-- Compiling module timer
+-- Compiling module top
+
+Top level modules:
+	top
+
+} {} {}}

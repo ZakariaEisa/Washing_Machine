@@ -1,0 +1,128 @@
+module tb_wm();
+
+// Internal signal declaration
+reg start_button_tb, pause_button_tb, clk_tb, reset_tb;
+wire out;
+
+top Dut(
+  .start_button(start_button_tb),
+  .pause_button(pause_button_tb),
+  .reset(reset_tb),
+  .clk(clk_tb),
+  .out(out)
+);
+
+// Testing block
+initial begin
+  start_button_tb = 0;
+  pause_button_tb = 0;
+  reset_tb = 1'b1;
+  #10
+  reset_tb = 1'b0;
+  #40
+
+  start_button_tb = 1;
+  #1600
+  pause_button_tb = 1;
+  #300
+  pause_button_tb = 0;
+  #6000
+
+  $stop;
+end
+
+// Clock generation
+initial begin
+  clk_tb = 1'b0;
+  forever #25 clk_tb = ~clk_tb;
+end
+
+// Assertions to check FSM and counter behavior
+always @(posedge clk_tb) begin
+    if (reset_tb) begin
+        if (!(Dut.fsm_1.state == 3'b000)) begin
+            $fatal("Error: FSM should be in Off state after reset.");
+        end
+    end else begin
+        case(Dut.fsm_1.state)
+            3'b000: // Off state
+                if (!(Dut.fsm_1.next_state == 3'b001 || Dut.fsm_1.next_state == 3'b000)) begin
+                    $fatal("Error: Off state should transition to FillWater or remain in Off.");
+                end
+            3'b001: // FillWater
+                if (!(Dut.fsm_1.next_state == 3'b010 || Dut.fsm_1.next_state == 3'b001)) begin
+                    $fatal("Error: FillWater state should transition to Wash or remain in FillWater.");
+                end
+            3'b010: // Wash
+                if (!(Dut.fsm_1.next_state == 3'b011 || Dut.fsm_1.next_state == 3'b010)) begin
+                    $fatal("Error: Wash state should transition to Drain or remain in Wash.");
+                end
+            3'b011: // Drain
+                if (!(Dut.fsm_1.next_state == 3'b100 || Dut.fsm_1.next_state == 3'b011)) begin
+                    $fatal("Error: Drain state should transition to Rinse or remain in Drain.");
+                end
+            3'b100: // Rinse
+                if (!(Dut.fsm_1.next_state == 3'b101 || Dut.fsm_1.next_state == 3'b100)) begin
+                    $fatal("Error: Rinse state should transition to Spin or remain in Rinse.");
+                end
+            3'b101: // Spin
+                if (!(Dut.fsm_1.next_state == 3'b110 || Dut.fsm_1.next_state == 3'b101)) begin
+                    $fatal("Error: Spin state should transition to Done or remain in Spin.");
+                end
+            3'b110: // Done
+                if (!(Dut.fsm_1.next_state == 3'b000)) begin
+                    $fatal("Error: Done state should transition to Off.");
+                end
+            default: begin
+                $fatal("Error: Invalid state.");
+            end
+        endcase
+    end
+end
+
+// Assertion to check counter behavior
+always @(posedge clk_tb) begin
+    if (reset_tb) begin
+        if (!(Dut.T_1.counter == 4'b0000)) begin
+            $fatal("Error: Counter should be 0 after reset.");
+        end
+    end else if (Dut.T_1.enable) begin
+        if (Dut.T_1.counter == 4'b1111) begin
+            if (!(Dut.T_1.counter == 4'b1111)) begin
+                $fatal("Error: Counter should hold at 4'b1111 until reset or condition changes.");
+            end
+        end else begin
+            if (!(Dut.T_1.counter < 4'b1111)) begin
+                $fatal("Error: Counter should increment properly.");
+            end
+        end
+    end
+end
+
+// Assertion for start and pause behavior
+always @(posedge clk_tb) begin
+    if (start_button_tb && !pause_button_tb) begin
+        // If start button is pressed, the FSM should start the process
+        if (!(Dut.fsm_1.state == 3'b001)) begin
+            $fatal("Error: FSM should start at FillWater when start button is pressed.");
+        end
+    end
+    if (pause_button_tb) begin
+        // If pause button is pressed, FSM should pause
+        if (!(Dut.fsm_1.state == Dut.fsm_1.state)) begin
+            $fatal("Error: FSM should not transition during pause.");
+        end
+    end
+end
+
+// Assertion for end of cycle
+always @(posedge clk_tb) begin
+    if (Dut.fsm_1.state == 3'b110) begin
+        if (!(Dut.out == 1)) begin
+            $fatal("Error: Output should be 1 when the cycle is Done.");
+        end
+    end
+end
+
+endmodule
+

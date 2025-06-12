@@ -1,0 +1,13 @@
+D:/WMEDA/controllerwm.v {0 {vlog -work work -vopt -stats=none D:/WMEDA/ControllerWM.v
+QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+** Error: (vlog-13069) D:/WMEDA/ControllerWM.v(2): near "module": syntax error, unexpected module.
+** Error: D:/WMEDA/ControllerWM.v(1): (vlog-13205) Syntax error found in the scope following 'mo'. Is there a missing '::'?
+
+} {3.0 5.0} {}} D:/WMEDA/tbwmmmm.v {1 {vlog -work work -vopt -stats=none D:/WMEDA/tbwmmmm.v
+QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+-- Compiling module tb_wm
+
+Top level modules:
+	tb_wm
+
+} {} {}}

@@ -1,0 +1,25 @@
+D:/WMEDA/TESTBWM.v {0 {vlog -work work -vopt -stats=none D:/WMEDA/TESTBWM.v
+QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+-- Compiling module tb_wm
+** Error: (vlog-13069) D:/WMEDA/TESTBWM.v(26): near "else": syntax error, unexpected else, expecting ';'.
+** Error: (vlog-13069) D:/WMEDA/TESTBWM.v(35): near "else": syntax error, unexpected else, expecting ';'.
+
+} {4.0 6.0} {}} D:/WMEDA/TOP.v {1 {vlog -work work -vopt -stats=none D:/WMEDA/TOP.v
+QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+-- Compiling module top
+
+Top level modules:
+	top
+
+} {} {}} D:/WMEDA/Controller.v {0 {vlog -work work -vopt -stats=none {D:\WMEDA\Controller.v}
+QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+-- Compiling module WashingMachineFSM
+** Error: (vlog-13069) D:\WMEDA\Controller.v(81): near "else": syntax error, unexpected else, expecting ';'.
+** Error: (vlog-13069) D:\WMEDA\Controller.v(87): near "else": syntax error, unexpected else, expecting ';'.
+
+} {4.0 6.0} {}} D:/WMEDA/TIMER.v {0 {vlog -work work -vopt -stats=none D:/WMEDA/TIMER.v
+QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+-- Compiling module timer
+** Error: (vlog-13069) D:/WMEDA/TIMER.v(22): near "else": syntax error, unexpected else, expecting ';' or ','.
+
+} {4.0 5.0} {}}

@@ -1,0 +1,90 @@
+module WashingMachineFSM(
+  input wire start,
+  input reset, clk,
+  input wire [3:0] timer,
+  output reg o
+);
+
+// State encoding
+parameter Off = 3'b000, FillWater = 3'b001, Wash = 3'b010,
+          Drain = 3'b011, Rinse = 3'b100, Spin = 3'b101, Done = 3'b110;
+
+// State and next state variables
+reg [2:0] state, next_state;
+
+always @(posedge clk or posedge reset) begin
+  if (reset)
+    state <= Off;
+  else
+    state <= next_state;
+end
+
+always @(*) begin
+  case (state)
+    Off: begin
+      if (start)
+        next_state = FillWater;
+      else
+        next_state = Off;
+    end
+    FillWater: begin
+      if (timer == 4'b1111)
+        next_state = Wash;
+      else
+        next_state = FillWater;
+    end
+    Wash: begin
+      if (timer == 4'b1111)
+        next_state = Drain;
+      else
+        next_state = Wash;
+    end
+    Drain: begin
+      if (timer == 4'b1111)
+        next_state = Rinse;
+      else
+        next_state = Drain;
+    end
+    Rinse: begin
+      if (timer == 4'b1111)
+        next_state = Spin;
+      else
+        next_state = Rinse;
+    end
+    Spin: begin
+      if (timer == 4'b1111)
+        next_state = Done;
+      else
+        next_state = Spin;
+    end
+    Done: begin
+      next_state = Off;
+    end
+    default: begin
+      next_state = Off;
+    end
+  endcase
+end
+
+// Assertion for FSM state transitions
+// This block should be placed outside the always @(*) block
+// or should be placed inside an always @(posedge clk)
+always @(posedge clk) begin
+  assert property (@(posedge clk) 
+    (state == Off && next_state == FillWater && start) || 
+    (state == FillWater && next_state == Wash && timer == 4'b1111) ||
+    (state == Wash && next_state == Drain && timer == 4'b1111) ||
+    (state == Drain && next_state == Rinse && timer == 4'b1111) ||
+    (state == Rinse && next_state == Spin && timer == 4'b1111) ||
+    (state == Spin && next_state == Done && timer == 4'b1111) ||
+    (state == Done && next_state == Off)
+  ) else $fatal("FSM state transition error!");
+
+  // Assertion for output 'o' being 1 only in Done state
+  assert property (@(posedge clk) 
+    (state == Done && o == 1) || 
+    (state != Done && o == 0)
+  ) else $fatal("Output 'o' is not correct in state %b", state);
+end
+
+endmodule

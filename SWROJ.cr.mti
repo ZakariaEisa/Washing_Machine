@@ -1,0 +1,15 @@
+D:/WMEDA/MODULE1.v {1 {vlog -work work -vopt -stats=none D:/WMEDA/MODULE1.v
+QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+-- Compiling module simple_module
+
+Top level modules:
+	simple_module
+
+} {} {}} D:/WMEDA/TBGENERATOR.v {1 {vlog -work work -vopt -stats=none D:/WMEDA/TBGENERATOR.v
+QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+-- Compiling module simple_module_tb
+
+Top level modules:
+	simple_module_tb
+
+} {} {}}
